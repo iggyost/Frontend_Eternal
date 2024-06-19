@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Frontend_Eternal.Views.ContentPages.StatisticsPage"
+             Title="StatisticsPage"
+             Shell.NavBarIsVisible="False"
+             Loaded="ContentPage_Loaded">
+    <Grid BackgroundColor="#1A1A1A">
+        <Grid Margin="16">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="96"></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <HorizontalStackLayout Margin="0,40,0,16">
+                <Image WidthRequest="24"
+                       HeightRequest="24"
+                       Source="logo_icon.png"
+                       Aspect="AspectFill"></Image>
+                <Label Text="Статистика"
+                       TextColor="#A8A8A8"
+                       FontSize="20"
+                       Margin="8,0,0,0"
+                       VerticalOptions="Center"></Label>
+            </HorizontalStackLayout>
+            <CollectionView x:Name="usersCollectionView"
+                            Grid.Row="1">
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Vertical"
+                                       ItemSpacing="24"></LinearItemsLayout>
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Label Text="{Binding Name}"
+                                   TextColor="#A8A8A8"
+                                   FontSize="18"></Label>
+                            <HorizontalStackLayout Margin="16,0,0,0"
+                                                   Spacing="8"
+                                                   HorizontalOptions="Center"
+                                                   Grid.Column="1">
+                                <Image Source="logo_colored.png"
+                                       HeightRequest="24"
+                                       WidthRequest="24"
+                                       VerticalOptions="Center"></Image>
+                                <Label Text="{Binding Balance,StringFormat='{}{0} ETH'}"
+                                       TextColor="#A8A8A8"></Label>
+                            </HorizontalStackLayout>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Grid>
+    </Grid>
+</ContentPage>

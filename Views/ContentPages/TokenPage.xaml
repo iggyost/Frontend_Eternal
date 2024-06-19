@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Frontend_Eternal.Views.ContentPages.TokenPage"
+             Title="TokenPage"
+             NavigationPage.HasNavigationBar="False"
+             Loaded="ContentPage_Loaded">
+    <Grid BackgroundColor="#1A1A1A">
+        <CollectionView Margin="16"
+                        x:Name="tokenCollectionView">
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout Orientation="Vertical"></LinearItemsLayout>
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <VerticalStackLayout Spacing="8">
+                        <Border StrokeShape="RoundRectangle 20"
+                                HeightRequest="378"
+                                WidthRequest="300"
+                                StrokeThickness="0"
+                                HorizontalOptions="Center">
+                            <Image Source="{Binding CoverImage}"
+                                   Aspect="AspectFill"></Image>
+                        </Border>
+                        <Label Text="{Binding Name}"
+                               TextColor="White"
+                               FontSize="28"
+                               HorizontalOptions="Center"></Label>
+                        <Label Text="{Binding Owner}"
+                               TextColor="#969696"
+                               FontSize="18"
+                               HorizontalOptions="Center"></Label>
+                        <Border HeightRequest="54"
+                                        StrokeShape="RoundRectangle 16"
+                                        StrokeThickness="0"
+                                        BackgroundColor="#33D9D9D9"
+                                        Margin="16"
+                                        VerticalOptions="End">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="28"></ColumnDefinition>
+                                    <ColumnDefinition></ColumnDefinition>
+                                    <ColumnDefinition Width="96"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Image Source="logo_colored.png"
+                                               VerticalOptions="Center"
+                                               HorizontalOptions="End"></Image>
+                                <VerticalStackLayout Spacing="4"
+                                                             HorizontalOptions="Start"
+                                                             Margin="4"
+                                                             Grid.Column="1">
+                                    <Label Text="{Binding Name}"
+                                                   TextColor="White"
+                                                   FontSize="15"
+                                                   FontFamily="Inter-SemiBold">
+                                        <Label.Shadow>
+                                            <Shadow Opacity="0.5"></Shadow>
+                                        </Label.Shadow>
+                                    </Label>
+                                    <Label Text="{Binding CostCurrency, StringFormat='{}{0} ETH'}"
+                                                   TextColor="White">
+                                        <Label.Shadow>
+                                            <Shadow Opacity="0.5"></Shadow>
+                                        </Label.Shadow>
+                                    </Label>
+                                </VerticalStackLayout>
+                                <ImageButton Source="buy_button_image.png"
+                                             x:Name="buyTokenButton"
+                                             Loaded="buyTokenButton_Loaded"
+                                             Clicked="buyTokenButton_Clicked"
+                                                     Grid.Column="2"
+                                                     Margin="4"></ImageButton>
+                            </Grid>
+                        </Border>
+                        <Label Text="Описание"
+                               TextColor="#A8A8A8"
+                               FontSize="20"></Label>
+                        <Border BackgroundColor="#212121"
+                                StrokeThickness="0"
+                                StrokeShape="RoundRectangle 20"
+                                VerticalOptions="Center"
+                                Padding="0,16">
+                            <Label WidthRequest="324"
+                                   FontSize="14"
+                                   HorizontalTextAlignment="Center"
+                                   Text="{Binding Description}"
+                                   TextColor="White"></Label>
+                        </Border>
+                        
+                    </VerticalStackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+</ContentPage>

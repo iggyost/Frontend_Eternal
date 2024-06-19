@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Frontend_Eternal.Views.ContentPages.FavoritesPage"
+             Title="FavoritesPage"
+             Loaded="ContentPage_Loaded"
+             Shell.NavBarIsVisible="False">
+    <Grid BackgroundColor="#1A1A1A">
+        <Grid Margin="16">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="96"></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <HorizontalStackLayout Margin="0,40,0,16">
+                <Image WidthRequest="24"
+                       HeightRequest="24"
+                       Source="logo_icon.png"
+                       Aspect="AspectFill"></Image>
+                <Label Text="Понравившиеся"
+                       TextColor="#A8A8A8"
+                       FontSize="20"
+                       Margin="8,0,0,0"
+                       VerticalOptions="Center"></Label>
+            </HorizontalStackLayout>
+            <CollectionView x:Name="favoritesCollectionView"
+                            Grid.Row="1">
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Orientation="Vertical"
+                                     Span="3"
+                                     HorizontalItemSpacing="4"
+                                     VerticalItemSpacing="4"></GridItemsLayout>
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Border BackgroundColor="Transparent"
+                                StrokeThickness="0"
+                                StrokeShape="RoundRectangle 16"
+                                WidthRequest="100"
+                                HeightRequest="128">
+                            <Grid>
+                                <Image Source="{Binding CoverImage}"></Image>
+                                <ImageButton x:Name="favoriteButton"
+                                             AutomationId="{Binding NftId}"
+                                             WidthRequest="24"
+                                             HeightRequest="24"
+                                             HorizontalOptions="End"
+                                             VerticalOptions="Start"
+                                             Margin="8"
+                                             Loaded="favoriteButton_Loaded"
+                                             Clicked="favoriteButton_Clicked"></ImageButton>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Grid>
+    </Grid>
+</ContentPage>

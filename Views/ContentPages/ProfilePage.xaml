@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Frontend_Eternal.Views.ContentPages.ProfilePage"
+             Title="ProfilePage"
+             Loaded="ContentPage_Loaded"
+             Shell.NavBarIsVisible="False">
+    <Grid BackgroundColor="#1A1A1A">
+        <Grid Margin="16">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="96"></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <HorizontalStackLayout Margin="0,40,0,16">
+                <Image WidthRequest="24"
+                       HeightRequest="24"
+                       Source="logo_icon.png"
+                       Aspect="AspectFill"></Image>
+                <Label Text="Профиль"
+                       TextColor="#A8A8A8"
+                       FontSize="20"
+                       Margin="8,0,0,0"
+                       VerticalOptions="Center"></Label>
+            </HorizontalStackLayout>
+            <Grid Grid.Row="1">
+                <VerticalStackLayout Spacing="8">
+                    <Label Text="name"
+                       TextColor="White"
+                       FontSize="24"
+                       FontFamily="Inter-SemiBold"
+                       HorizontalOptions="Center"
+                       x:Name="nameLabel"></Label>
+                    <Label Text="tag"
+                       TextColor="#676767"
+                       FontSize="20"
+                       HorizontalOptions="Center"
+                       x:Name="tagLabel"></Label>
+                    <Border HeightRequest="64"
+                            Margin="16"
+                            StrokeShape="RoundRectangle 16"
+                            StrokeThickness="0"
+                            BackgroundColor="#33D9D9D9">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="0.5*"></ColumnDefinition>
+                                <ColumnDefinition Width="0.8*"></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Image Source="logo_colored.png"
+                           WidthRequest="48"
+                           HeightRequest="48"></Image>
+                            <VerticalStackLayout Grid.Column="1"
+                                         HorizontalOptions="Center"
+                                         VerticalOptions="Center"
+                                         Spacing="8">
+                                <Label Text="Баланс"
+                               TextColor="White"
+                               FontFamily="Inter-Medium"></Label>
+                                <Label x:Name="balanceLabel"
+                               TextColor="White"
+                               FontFamily="Inter-Medium"></Label>
+                            </VerticalStackLayout>
+                        </Grid>
+                    </Border>
+                    <CollectionView x:Name="userCollectionView">
+                        <CollectionView.ItemsLayout>
+                            <GridItemsLayout Orientation="Vertical"
+                                     Span="3"
+                                     HorizontalItemSpacing="4"
+                                     VerticalItemSpacing="4"></GridItemsLayout>
+                        </CollectionView.ItemsLayout>
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Border BackgroundColor="Transparent"
+                                StrokeThickness="0"
+                                StrokeShape="RoundRectangle 16"
+                                WidthRequest="100"
+                                HeightRequest="128">
+                                    <Grid>
+                                        <Image Source="{Binding CoverImage}"></Image>
+                                    </Grid>
+                                </Border>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </VerticalStackLayout>
+            </Grid>
+        </Grid>
+    </Grid>
+</ContentPage>

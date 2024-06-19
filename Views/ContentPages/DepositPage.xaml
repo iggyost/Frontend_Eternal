@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Frontend_Eternal.Views.ContentPages.DepositPage"
+             Title="DepositPage">
+    <Grid BackgroundColor="#1A1A1A">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="96"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <VerticalStackLayout VerticalOptions="Start"
+                             Grid.Row="1"
+                             Spacing="8"
+                             Margin="64,0">
+            <Label Text="Оплата"
+                   TextColor="#676767"
+                   FontSize="28"
+                   FontFamily="Inter-SemiBold"
+                   HorizontalOptions="Center"></Label>
+            <VerticalStackLayout Spacing="6"
+                                 Margin="32,16,32,0">
+                <Border BackgroundColor="Transparent"
+                        StrokeThickness="2"
+                        Stroke="#D2D2D2"
+                        StrokeShape="RoundRectangle 12">
+                    <Entry Margin="8,0"
+                           Placeholder="Кол-во токенов"
+                           PlaceholderColor="#40A8A8A8"
+                           TextColor="White"
+                           HorizontalTextAlignment="Center"
+                           Completed="countTokensEntry_Completed"
+                           FontSize="16"
+                           CharacterSpacing="2"
+                           MaxLength="4"
+                           Keyboard="Numeric"
+                           x:Name="countTokensEntry"></Entry>
+                </Border>
+            </VerticalStackLayout>
+            <VerticalStackLayout Spacing="6"
+                                 Margin="32,32">
+                <Label Text="Номер карты"
+                       TextColor="#676767"
+                       FontSize="16"></Label>
+                <Border BackgroundColor="Transparent"
+                        StrokeThickness="2"
+                        Stroke="#D2D2D2"
+                        StrokeShape="RoundRectangle 12">
+                    <Entry Margin="8,0"
+                           FontSize="16"
+                           TextColor="White"
+                           CharacterSpacing="1"
+                           MaxLength="16"
+                           Keyboard="Numeric"
+                           x:Name="cardNumEntry"></Entry>
+                </Border>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition Width="16"></ColumnDefinition>
+                        <ColumnDefinition Width="0.6*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <VerticalStackLayout>
+                        <Label Text="ММ/ГГ"
+                               TextColor="#676767"></Label>
+                        <Border BackgroundColor="Transparent"
+                                StrokeThickness="2"
+                                Stroke="#D2D2D2"
+                                StrokeShape="RoundRectangle 12">
+                            <DatePicker HorizontalOptions="Center"
+                                        FontSize="16"
+                                        Format="MM/yy"
+                                        TextColor="White"
+                                        x:Name="expireDp"></DatePicker>
+                        </Border>
+                    </VerticalStackLayout>
+                    <VerticalStackLayout Grid.Column="2">
+                        <Label Text="CVV-код"
+                               TextColor="#676767"></Label>
+                        <Border BackgroundColor="Transparent"
+                                StrokeThickness="2"
+                                Stroke="#D2D2D2"
+                                StrokeShape="RoundRectangle 12">
+                            <Entry Margin="8,0"
+                                   TextColor="White"
+                                   FontSize="16"
+                                   CharacterSpacing="4"
+                                   MaxLength="3"
+                                   Keyboard="Numeric"
+                                   HorizontalTextAlignment="Center"
+                                   x:Name="cvvCodeEntry"></Entry>
+                        </Border>
+                    </VerticalStackLayout>
+                </Grid>
+                <Button Text="К оплате: 0 ₽"
+                        Margin="0,16"
+                        TextColor="#CCAEAEAE"
+                        CornerRadius="32"
+                        FontSize="15"
+                        BackgroundColor="#662C2C2C"
+                        x:Name="payBtn"
+                        Clicked="payBtn_Clicked"></Button>
+            </VerticalStackLayout>
+        </VerticalStackLayout>
+    </Grid>
+</ContentPage>

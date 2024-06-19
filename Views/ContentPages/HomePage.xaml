@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Frontend_Eternal.Views.ContentPages.HomePage"
+             Title="HomePage"
+             Loaded="ContentPage_Loaded"
+             Shell.NavBarIsVisible="False">
+    <Grid BackgroundColor="#1A1A1A">
+        <VerticalStackLayout Spacing="4"
+                             Margin="24,0">
+
+            <HorizontalStackLayout Margin="0,40,0,16">
+                <Image WidthRequest="24"
+                       HeightRequest="24"
+                       Source="logo_icon.png"
+                       Aspect="AspectFill"></Image>
+                <Label Text="Eternal"
+                       TextColor="#A8A8A8"
+                       VerticalOptions="Center"></Label>
+            </HorizontalStackLayout>
+
+            <Border BackgroundColor="Transparent"
+                    StrokeShape="RoundRectangle 16"
+                    Stroke="#D2D2D2">
+                <HorizontalStackLayout Spacing="8"
+                                       Margin="16,0"
+                                       VerticalOptions="Center">
+                    <Image Source="search_icon.png"
+                           HeightRequest="20"
+                           WidthRequest="20"
+                           Aspect="AspectFill"></Image>
+                    <Entry FontSize="16"
+                           Placeholder="Поиск"
+                           PlaceholderColor="#505050"
+                           TextColor="White"
+                           Completed="searchEntry_Completed"
+                           x:Name="searchEntry"></Entry>
+                </HorizontalStackLayout>
+            </Border>
+
+            <CollectionView x:Name="categoriesCollectionView"
+                            Margin="0,12,0,0">
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Horizontal"
+                                       ItemSpacing="4"></LinearItemsLayout>
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <RadioButton x:Name="categoryButton"
+                                     Style="{StaticResource categoriesStyle}"
+                                     AutomationId="{Binding CategoryId}"
+                                     Content="{Binding Name}"
+                                     CheckedChanged="categoryButton_CheckedChanged"></RadioButton>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <Border StrokeShape="RoundRectangle 20"
+                    StrokeThickness="0"
+                    HeightRequest="440"
+                    BackgroundColor="#7F2C2C2C"
+                    Margin="0,32,0,0">
+                <CarouselView x:Name="tokensCarouselView"
+                              Loop="False">
+                    <CarouselView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Margin="16"
+                                  AutomationId="{Binding NftId}">
+                                <Grid.GestureRecognizers>
+                                    <TapGestureRecognizer x:Name="nftGesture"
+                                                          Tapped="nftGesture_Tapped"></TapGestureRecognizer>
+                                </Grid.GestureRecognizers>
+                                <VerticalStackLayout>
+                                    <Border StrokeThickness="0"
+                                StrokeShape="RoundRectangle 20"
+                                BackgroundColor="Transparent"
+                                HeightRequest="360">
+                                        <Grid>
+                                            <Image Source="{Binding CoverImage}"
+                                       Aspect="AspectFill"></Image>
+                                            <Border HeightRequest="54"
+                                        StrokeShape="RoundRectangle 16"
+                                        StrokeThickness="0"
+                                        BackgroundColor="#33D9D9D9"
+                                        Margin="16"
+                                        VerticalOptions="End">
+                                                <Grid>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="28"></ColumnDefinition>
+                                                        <ColumnDefinition></ColumnDefinition>
+                                                        <ColumnDefinition Width="96"></ColumnDefinition>
+                                                    </Grid.ColumnDefinitions>
+                                                    <Image Source="logo_colored.png"
+                                               VerticalOptions="Center"
+                                               HorizontalOptions="End"></Image>
+                                                    <VerticalStackLayout Spacing="4"
+                                                             HorizontalOptions="Start"
+                                                             Margin="4"
+                                                             Grid.Column="1">
+                                                        <Label Text="{Binding Name}"
+                                                   TextColor="White"
+                                                   FontSize="15"
+                                                   FontFamily="Inter-SemiBold">
+                                                            <Label.Shadow>
+                                                                <Shadow Opacity="0.5"></Shadow>
+                                                            </Label.Shadow>
+                                                        </Label>
+                                                        <Label Text="{Binding CostCurrency, StringFormat='{}{0} ETH'}"
+                                                   TextColor="White">
+                                                            <Label.Shadow>
+                                                                <Shadow Opacity="0.5"></Shadow>
+                                                            </Label.Shadow>
+                                                        </Label>
+                                                    </VerticalStackLayout>
+                                                    <ImageButton Source="buy_button_image.png"
+                                                                 AutomationId="{Binding NftId}"
+                                                                 x:Name="buyButton"
+                                                                 Loaded="buyButton_Loaded"
+                                                                 Clicked="buyButton_Clicked"
+                                                     Grid.Column="2"
+                                                     Margin="4"></ImageButton>
+                                                </Grid>
+                                            </Border>
+                                        </Grid>
+                                    </Border>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition></ColumnDefinition>
+                                            <ColumnDefinition Width="32"></ColumnDefinition>
+                                            <ColumnDefinition Width="12"></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+                                        <Label Text="{Binding Owner}"
+                                               TextColor="#969696"
+                                               Margin="12"
+                                               FontSize="20"></Label>
+                                        <ImageButton Source="heart_icon_check.png"
+                                                     AutomationId="{Binding NftId}"
+                                         Grid.Column="1"
+                                         Margin="12"
+                                         HeightRequest="24"
+                                         WidthRequest="24"
+                                         x:Name="favoriteButton"
+                                         Loaded="favoriteButton_Loaded"
+                                         Clicked="favoriteButton_Clicked"></ImageButton>
+                                    </Grid>
+                                </VerticalStackLayout>
+                            </Grid>
+                        </DataTemplate>
+                    </CarouselView.ItemTemplate>
+                </CarouselView>
+            </Border>
+
+        </VerticalStackLayout>
+        <ActivityIndicator VerticalOptions="Center"
+                           HorizontalOptions="Center"
+                           Color="White"
+                           Margin="0,96,0,0"
+                           x:Name="loadingIndicator"></ActivityIndicator>
+    </Grid>
+</ContentPage>

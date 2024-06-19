@@ -1,0 +1,67 @@
+﻿<?xml version = "1.0" encoding = "UTF-8" ?>
+<Application xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:Frontend_Eternal"
+             x:Class="Frontend_Eternal.App">
+    <Application.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Tab">
+                <Setter Property="Shell.TabBarBackgroundColor"
+                        Value="#2D2C2D" />
+                <Setter Property="Shell.TabBarTitleColor"
+                        Value="White" />
+                <Setter Property="Shell.TabBarUnselectedColor"
+                        Value="#696868" />
+            </Style>
+            <Style TargetType="RadioButton" x:Key="categoriesStyle">
+                <Setter Property="ControlTemplate">
+                    <Setter.Value>
+                        <ControlTemplate>
+                            <Grid>
+                                <Border x:Name="Container"
+                                        BackgroundColor="#2C2C2C"
+                                        StrokeThickness="0"
+                                        HorizontalOptions="Center"
+                                        Padding="30,0"
+                                        HeightRequest="40">
+                                    <Border.StrokeShape>
+                                        <RoundRectangle CornerRadius="20"></RoundRectangle>
+                                    </Border.StrokeShape>
+                                    <Label x:Name="TextLabel"
+                                           HorizontalOptions="Center"
+                                           VerticalOptions="Center"
+                                           TextColor="White"
+                                           Text="{TemplateBinding Content}"></Label>
+                                </Border>
+                                <VisualStateManager.VisualStateGroups>
+                                    <VisualStateGroupList>
+                                        <VisualStateGroup x:Name="CheckedStates">
+                                            <VisualState x:Name="Checked">
+                                                <VisualState.Setters>
+                                                    <Setter TargetName="TextLabel" 
+                                                            Property="Label.TextColor" 
+                                                            Value="White" />
+                                                </VisualState.Setters>
+                                            </VisualState>
+                                            <VisualState x:Name="Unchecked">
+                                                <VisualState.Setters>
+                                                    <Setter TargetName="TextLabel" 
+                                                            Property="Label.TextColor" 
+                                                            Value="#33FFFFFF" />
+                                                </VisualState.Setters>
+                                            </VisualState>
+                                        </VisualStateGroup>
+                                    </VisualStateGroupList>
+                                </VisualStateManager.VisualStateGroups>
+                            </Grid>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Resources/Styles/Colors.xaml" />
+                <ResourceDictionary Source="Resources/Styles/Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>
